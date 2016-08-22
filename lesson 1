@@ -1,0 +1,37 @@
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(int N) {
+        //convert N to binary
+        string biny = Convert.ToString(N, 2);
+        //declaring variables
+        int count = 0;
+        int max = 0;
+        //loop ofr counting recurring 0s
+        foreach (var bit in biny)
+        {
+            //if there is a 0 the count increments
+            if (bit == '0')
+            {
+                count++;
+            }
+            else if (bit == '1')
+            {
+                //upon encountering a 1 and the count > max
+                //then it is is recorded
+                if (count > max)
+                {
+                    max = count;
+                }
+                count = 0;
+            }
+        }
+        return max;
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+    }
+}
