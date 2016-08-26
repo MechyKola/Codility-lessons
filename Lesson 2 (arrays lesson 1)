@@ -1,0 +1,46 @@
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int[] solution(int[] A, int K) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        //check for empty array
+        if (A.Length == 0)
+        {
+            return A;
+        }
+        else
+        {
+            //shift (refer to method shift) K times
+            for(int i = 1; i <= K; i++)
+            {
+                shift(A);
+            }
+            return A;
+        }
+    }
+    
+    //method to shift numbers
+    public int[] shift(int[] In)
+    {
+        //find the number of elements
+        int leng = In.Length;
+        leng--;
+        
+        //save last value
+        int last = In[(leng)];
+        
+        //reassign values
+        for(int i = leng; i > 0; i--)
+        {
+            In[(i)] = In[i-1];
+        }
+        In[0] = last;
+        
+        return In;
+    }
+}
