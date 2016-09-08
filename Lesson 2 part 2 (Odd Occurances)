@@ -1,38 +1,43 @@
 using System;
+using System.Linq;
 
 class Solution {
     public int solution(int[] A) {
         //declare variables
-        int ini = 0;
+        int original = 0;
         int last = 0;
         int len = A.Length;
         
         //find out the number of pairs
         int repeat = len;
-        repeat--;
+        repeat++;
         repeat = repeat/2;
         
         //repeat the sequence for the number of pairs there are
         for (int i = repeat; i > 0; i--)
         {
+            //declaring n and s
+            int n = 0;
+            int s = 0;
             //find and match numbers
-            for (int n = 0; n < len; n++)
+            for (; n < len; n++)
             {
                 if (A[n] != 0)
                 {
-                    ini = A[n];
+                    original = A[n];
                     A[n] = 0;
                     break;
                 }
             }
             
-            for (int s = 0; s < len; s++)
+            if (A.Contains(original))
             {
-                if (A[s] == ini)
-                {
-                    A[s] = 0;
-                    break;
-                }
+                s = Array.FindIndex(A, n, item => item == original);
+                A[s] = 0;
+            }
+            else
+            {
+                A[n] = original;
             }
         }
         
