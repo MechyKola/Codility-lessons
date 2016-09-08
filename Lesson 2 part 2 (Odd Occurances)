@@ -1,0 +1,68 @@
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int solution(int[] A) {
+        //declare variables
+        int ini = 0;
+        int last = 0;
+        int len = A.Length;
+        //Console.WriteLine(len);
+        
+        //find out the number of pairs
+        int repeat = len;
+        repeat--;
+        repeat = repeat/2;
+        //Console.WriteLine(repeat);
+        
+        //repeat the sequence for the number of pairs there are
+        for (int i = repeat; i > 0; i--)
+        {
+            //debug
+            //Console.WriteLine(i);
+            //find and match numbers
+            for (int n = 0; n <= len; n++)
+            {
+                //debug
+                //Console.WriteLine(i);
+                if (A[n] != 0)
+                {
+                    ini = A[n];
+                    A[n] = 0;
+                    break;
+                }
+            }
+            
+            for (int s = 0; s <= len; s++)
+            {
+                if (A[s] == ini)
+                {
+                    A[s] = 0;
+                    break;
+                }
+            }
+        }
+        
+        //debug
+        //foreach (int element in A)
+        //{
+        //    Console.WriteLine(element);
+        //}
+        
+        //find last remaining non-zero digit and return it
+        for (int i = 0; i <= len; i++)
+        {
+            if (A[i] != 0)
+            {
+                last = A[i];
+                break;
+            }
+        }
+        return last;
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+    }
+}
