@@ -16,7 +16,7 @@ class Solution {
         len = A.Length;
         
         //go though total until smallest value is reached
-        for (int i = 0; i < len ; i++)
+        for (int i = 0; i < len-1 ; i++)
         {
             ppart = 0;
             for(p = 0 ; p <= i ; p++)
@@ -34,6 +34,7 @@ class Solution {
                 
             //find difference
             difference = npart - ppart;
+            //Console.WriteLine(difference);
             if ( Math.Abs(difference) < smallest)
             {
                 //Console.WriteLine(difference);
