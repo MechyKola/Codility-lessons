@@ -5,8 +5,6 @@ class Solution {
         
         //declare variables
         int smallest = 100000000;
-        int ppart = 0;
-        int npart = 0;
         int difference = 0;
         int len = 0;
         int p = 0;
@@ -15,6 +13,11 @@ class Solution {
         //get length
         len = A.Length;
         
+        int ppart = A[0];
+        int npart = A[len-1];
+        
+        //if more than 2 elements
+        if (len >2){
         //go though total until smallest value is reached
         for (int i = 0; i < len-1 ; i++)
         {
@@ -40,6 +43,10 @@ class Solution {
                 //Console.WriteLine(difference);
                 smallest = Math.Abs(difference);
             }
+        }}
+        else
+        {
+            smallest = Math.Abs(npart - ppart);
         }
         
         //return smallest difference
