@@ -25,14 +25,7 @@ class Solution {
         //go though total until smallest value is reached
         for (int i = 1; i < len-1 ; i++)
         {
-            //add element to ppart
-            ppart += A[i];
-            //Console.WriteLine(ppart);
-            
-            //take element away from npart
-            npart -= A[i];
-            //Console.WriteLine(npart);
-                
+    
             //find difference
             difference = npart - ppart;
             //Console.WriteLine(difference);
@@ -44,6 +37,14 @@ class Solution {
                 //Console.WriteLine(difference);
                 smallest = Math.Abs(difference);
             }
+            
+            //add element to ppart
+            ppart += A[i];
+            //Console.WriteLine(ppart);
+            
+            //take element away from npart
+            npart -= A[i];
+            //Console.WriteLine(npart);
         }}
         else
         {
