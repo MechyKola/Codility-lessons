@@ -7,8 +7,6 @@ class Solution {
         int smallest = 100000000;
         int difference = 0;
         int len = 0;
-        int p = 0;
-        int n = 0;
         
         //get length
         len = A.Length;
@@ -17,27 +15,30 @@ class Solution {
         int npart = A[len-1];
         
         //if more than 2 elements
-        if (len >2){
-        //go though total until smallest value is reached
-        for (int i = 0; i < len-1 ; i++)
+        if (len > 2){
+        //give rest of elements to npart
+        for (int i = 1; i < len-1 ; i++)
         {
-            ppart = 0;
-            for(p = 0 ; p <= i ; p++)
-            {
-                ppart += A[p];
-            }
-                //Console.WriteLine(ppart);
-                
-            npart = 0;    
-            for(n = len-1 ; n > i ; n--)
-            {
-                npart += A[n];
-            }
-                //Console.WriteLine(npart);
+            npart += A[i];
+        }
+        
+        //go though total until smallest value is reached
+        for (int i = 1; i < len-1 ; i++)
+        {
+            //add element to ppart
+            ppart += A[i];
+            //Console.WriteLine(ppart);
+            
+            //take element away from npart
+            npart -= A[i];
+            //Console.WriteLine(npart);
                 
             //find difference
             difference = npart - ppart;
             //Console.WriteLine(difference);
+            
+            //if the difference is smaller than current
+            //new difference takes its place
             if ( Math.Abs(difference) < smallest)
             {
                 //Console.WriteLine(difference);
@@ -46,10 +47,10 @@ class Solution {
         }}
         else
         {
+            //if only 2 elements the difference is recorded
             smallest = Math.Abs(npart - ppart);
         }
         
         //return smallest difference
         return smallest;
     }
-}
