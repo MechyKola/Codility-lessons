@@ -1,0 +1,17 @@
+using System;
+
+class Solution {
+    public int solution(int X, int Y, int D) {
+        double move = (Y - X)/(double)D;
+        if (move % 1 != 0)
+        {
+            int moves = (int)Math.Truncate(move);
+            moves++;
+            return moves;
+        }
+        else
+        {
+            return (int)move;
+        }
+    }
+}
