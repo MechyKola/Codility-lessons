@@ -1,0 +1,28 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        //check for empty array
+        if (A.Length == 0){return 1;}
+        //sort array
+        Array.Sort(A);
+        //check if the first value is the answer
+        if (A[0] == 2){return 1;}
+        //find length
+        int len = A.Length;
+        int i = 0;
+        //run loop to find missing element
+        for(; i < len - 1; i++)
+        {
+            //if difference between 2 elements not 1 then
+            //return missing element
+            int diff = A[i+1] - A[i];
+            if (diff != 1)
+            {
+                return (i + 2);
+            }
+        }
+        //otherwise return last element
+        return(A[i]+1);
+    }
+}
