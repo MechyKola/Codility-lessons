@@ -1,0 +1,64 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        //respond to singular array
+        if (A.Length == 1 )
+        {
+            if (A[0] != 1 ){return 1;}
+            else {return 2;}
+        }
+        
+        //sort array
+        Array.Sort(A);
+        
+        //respond to 2 element array  
+        if (A.Length == 2 )
+        {
+            if (A[0] != 1 & A[1] != 1 ){return 1;}
+            else if (A[1] != 2 ) {return 2;}
+            else {return 3;}
+        }
+        
+        //check for first integer
+        if(A[0] > 1)
+        {
+           return 1;
+        }
+        
+        //find length
+        int len = A.Length;
+        
+        //check if highest integer is negative
+        if (A[len-1] < 1){return 1;}
+        
+        int i = 0;
+        //run loop to start at integer 1
+        while(A[i] < 0)
+        {
+            i++;
+        }
+        
+        //run loop to find missing element
+        for(; i < len - 2; i++)
+        {
+            //if difference between 2 elements not 1 then
+            //return missing element
+            int diff = A[i+1] - A[i];
+            if (diff > 1)
+            {
+                return (A[i] + 1);
+            }
+        }
+        
+        //run if condition to prevent out of range exceptions
+        if(A[i+1] - A[i] > 1)
+        {
+            return A[i]+1;
+        }
+        else
+        {
+            return(A[i+1]+1);
+        }
+    }
+}
