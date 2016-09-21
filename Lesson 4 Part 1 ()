@@ -1,0 +1,30 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        //respond to 1 element array
+        if (A.Length == 1){
+            if (A[0] == 1) {return 1;}
+            else {return 0;}}
+        //sort array
+        Array.Sort(A);
+        //check if the first value is 1
+        if (A[0] != 1){return 0;}
+        //find length
+        int len = A.Length;
+        int i = 0;
+        //run check for missing numbers
+        for(; i < len - 1; i++)
+        {
+            //if difference between 2 elements not 1 then
+            //return that it is not a permutation (0)
+            int diff = A[i+1] - A[i];
+            if (diff != 1)
+            {
+                return (0);
+            }
+        }
+        //conditions passed: return that it is a permutation (1)
+        return 1;
+    }
+}
