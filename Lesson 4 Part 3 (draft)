@@ -1,0 +1,26 @@
+using System;
+using System.Linq;
+
+class Solution {
+    public int solution(int X, int[] A) {
+        int[] steps = new int[X];
+        int n = 0;
+        
+        int len = A.Length;
+        
+        for(n = 0; n < X; n++)
+        {
+            for(int i = 0; i < len; i++)
+            {
+                if (A[i] == 1)
+                {
+                    steps[n] = i;
+                }
+            }
+        }
+        
+        int max = steps.Max();
+        
+        return max;
+    }
+}
