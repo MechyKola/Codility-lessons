@@ -34,3 +34,4 @@ class Solution {
         return max;
     }
 }
+// current time complexity is O(N ** 2)
