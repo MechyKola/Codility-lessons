@@ -1,0 +1,36 @@
+using System;
+
+class Solution {
+    public int solution(int X, int[] A) {
+        //create array for X
+        int[] x = new int [X];
+        
+        //create integer for jumps
+        int max = -1;
+        
+        //get length of array
+        int len = A.Length;
+        
+        //populate array for X
+        for(int i = 0; i < X; i++)
+        {
+            x[i] = Array.IndexOf(A, (i+1));
+            if (x[i] == -1)
+            {
+                return -1;
+            }
+        }
+        
+        //find highest value
+        for(int i = 0; i < X; i++)
+        {
+            if (x[i] > max)
+            {
+                max = x[i];
+            }
+        }
+        
+        //return answer
+        return max;
+    }
+}
