@@ -1,0 +1,29 @@
+using System;
+using System.Linq;
+
+class Solution {
+    public int[] solution(int N, int[] A) {
+        //declare values
+        int[] counters = new int[N];
+        int len = A.Length;
+        int max;
+        
+        //loop
+        for ( int i = 0; i < len; i++ )
+        {
+            if(A[i] <= N)
+            {
+                counters[(A[i] - 1)] += 1;
+            }
+            else
+            {
+                max = counters.Max();
+                for (int n = 0; n < N; n++)
+                {
+                    counters[n] = max;
+                }
+            }
+        }
+        return counters;
+    }
+}
