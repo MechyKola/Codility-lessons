@@ -1,0 +1,44 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        //find length
+        int len = A.Length;
+        
+        //declare integer for total
+        int total = 0;
+        
+        //declare integer for number of pairs
+        int pairs = 0;
+        
+        //find total
+        for (int i = 0; i < len; i++)
+        {
+            total += A[i];
+        }
+        
+        //use loop that manipulates total number
+        //to find number of pairs
+        for (int i = 0; i < len; i++)
+        {
+            if (A[i] == 0)
+            {
+                pairs += total;
+            }
+            else
+            {
+                total--;
+            }
+        }
+        
+        //checking number for size
+        if (pairs < 0 || pairs > 1000000000)
+        {
+            return -1;
+        }
+        else
+        {
+            return pairs;
+        }
+    }
+}
