@@ -1,0 +1,13 @@
+using System;
+
+class Solution {
+    public int solution(int A, int B, int K) {
+        int d = (B - A) % K;
+        int t = ((B - A) - d)/K;
+        if (A % K == 0 || B % K == 0)
+        {
+            t++;
+        }
+        return (t);
+    }
+}
