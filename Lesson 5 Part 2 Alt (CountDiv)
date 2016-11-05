@@ -1,5 +1,7 @@
 using System;
 
+//faster ansd simpler but only works in 70-80% of cases
+
 class Solution {
     public int solution(int A, int B, int K) {
         int d = (B - A) % K;
