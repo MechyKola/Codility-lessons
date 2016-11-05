@@ -1,0 +1,40 @@
+using System;
+
+class Solution {
+    public int solution(int A, int B, int K) {
+        
+        int i;
+        int t = 0;
+        
+        //find first multiple
+        for ( i = A ; i < B ; i++) 
+        {
+            if (i % K == 0)
+            {
+                break;
+            }
+        }
+        
+        //take out reminder & divide
+        int dif = B - i - ((B - i) % K);
+        
+        if ( dif != 0 )
+        {
+            t = dif/K;
+            t++;
+        }
+        else
+        {
+            //check for 
+            for ( i = A; i <= B; i++ )
+            {
+                if ( i % K == 0)
+                {
+                    return 1;
+                }
+            }
+        }
+        
+        return (t);
+    }
+}
