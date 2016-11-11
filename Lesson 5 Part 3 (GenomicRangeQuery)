@@ -43,7 +43,7 @@ class Solution {
             
             for( int n = P[i]; n <= Q[i]; n++)
             {
-                if (mins[i] < nums[n])
+                if (mins[i] > nums[n])
                 {
                     mins[i] = nums[n];
                 }
