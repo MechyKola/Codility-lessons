@@ -1,0 +1,67 @@
+using System;
+
+class Solution {
+    public int[] solution(string S, int[] P, int[] Q) {
+        //find length of string
+        int N = S.Length;
+        //declare multidimensional array for changes
+        int[,] genes = new int[3, N+1];
+        //accumulator
+        int[] accum = new int[3];
+        
+        //record changes along sequence
+        for(int i = 1; i < N; i++)
+        {
+            if (S.substring(i,i) == A)
+            {
+                accum[0]++;
+            }
+            else if (S.substring(i,i) == C)
+            {
+                accum[1]++;
+            }
+            else if (S.substring(i,i) == G)
+            {
+                accum[2]++;
+            }
+            else if (S.substring(i,i) == T)
+            {
+                accum[3]++;
+            }
+            
+            //put accumulated values into genes array
+            genes[0,i] = accum[0];
+            genes[1,i] = accum[1];
+            genes[2,i] = accum[2];
+            genes[3,i] = accum[3];
+        }
+        
+        //length of queries
+        int len = P.length;
+        int[] result = new int[len];
+        
+        //check of genes exist in slice
+        for(i = 0; i < len; i++)
+        {
+            if(genes[3,Q[i]]-genes[3,P[i]] > 0)
+            {
+                result[i] = 4;
+            }
+            else if(sequence[2,Q[i]]-genes[2,P[i]] > 0)
+            {
+                result[i] = 3;
+            }
+            else if(genes[1,Q[i]]-genes[1,P[i]] > 0)
+            {
+                result[i] = 2;
+            }
+            else if(genes[0,Q[i]]-genes[0,P[i]] > 0)
+            {
+                result[i] = 1;
+            }
+        }
+        
+        //return accumulated values
+        return result;
+    }
+}
