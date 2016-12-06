@@ -1,1 +1,21 @@
-//TODO
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        //create array with totals
+        int len = A.Length;
+        int[] total = new int[len];
+        int accum = 0;
+        
+        //fill it with totals
+        for(int i = 0; i < len; i++)
+        {
+            accum += A[i];
+            total[i] = accum;
+        }
+        
+        int average = 0;
+        
+        return average;
+    }
+}
