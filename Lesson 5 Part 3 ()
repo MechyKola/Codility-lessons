@@ -19,17 +19,17 @@ class Solution {
         
         //go through and find lowest difference
         //for each starting point
-        for(int i = 0; i < len; i++)
+        for(int i = 1; i < len; i++)
         {
-            for(int n = 0; n < (len - i); n++)
+            for(int n = i; n < len; n++)
             {
                 if(A[n] < min)
                 {
                     min = A[n];
                 }
-                //find average
-            mina[i] = (min/i);
             }
+            //find average
+            mina[i-1] = (min/i);
         }
                 
         float average = mina[0];
