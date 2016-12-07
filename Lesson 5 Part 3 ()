@@ -40,9 +40,10 @@ class Solution {
             if(mina[i] < average)
             {
                 average = A[i];
+                min = i;
             }
         }
         
-        return average;
+        return min;
     }
 }
