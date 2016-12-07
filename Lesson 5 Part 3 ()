@@ -21,18 +21,18 @@ class Solution {
         //for each starting point
         for(int i = 1; i < len; i++)
         {
+            min = 1000000000;
             for(int n = i; n < len; n++)
             {
-                min = 1000000000;
                 if(total[n] < min)
                 {
-                    min = total[n];
+                    min = (total[n]);
                 }
             }
             //find average
             min = min - total[i-1];
             mina[i-1] = (min/(len-i));
-            //Console.WriteLine(min);
+            Console.WriteLine(min);
             //Console.WriteLine(mina[i-1]);
         }
                 
