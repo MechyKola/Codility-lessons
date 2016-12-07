@@ -23,13 +23,17 @@ class Solution {
         {
             for(int n = i; n < len; n++)
             {
-                if(A[n] < min)
+                min = 1000000000;
+                if(total[n] < min)
                 {
-                    min = A[n];
+                    min = total[n];
                 }
             }
             //find average
-            mina[i-1] = (min/i);
+            min = min - total[i-1];
+            mina[i-1] = (min/(len-i));
+            //Console.WriteLine(min);
+            //Console.WriteLine(mina[i-1]);
         }
                 
         float average = mina[0];
