@@ -5,6 +5,7 @@ class Solution {
         //create array with totals
         int len = A.Length;
         int[] total = new int[len];
+        float[] mina = new float[len-1];
         int accum = 0;
         
         //fill it with totals
@@ -13,8 +14,34 @@ class Solution {
             accum += A[i];
             total[i] = accum;
         }
+
+        int min = 0;
         
-        int average = 0;
+        //go through and find lowest difference
+        //for each starting point
+        for(int i = 0; i < len; i++)
+        {
+            for(int n = 0; n < (len - i); n++)
+            {
+                if(A[n] < min)
+                {
+                    min = A[n];
+                }
+                //find average
+            mina[i] = (min/i);
+            }
+        }
+                
+        int average = mina[0];
+        
+        //go through starting points and find lowest
+        for(int i = 0; i < (len-1); i++)
+        {
+            if(mina[i] < average)
+            {
+                average = A[i];
+            }
+        }
         
         return average;
     }
