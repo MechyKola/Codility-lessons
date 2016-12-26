@@ -4,9 +4,9 @@ class Solution {
     public int solution(int[] A) {
         //create array with totals
         int len = A.Length;
-        int[] total = new int[len+1];
+        float[] total = new float[len+1];
         float[] mina = new float[len-1];
-        int accum = 0;
+        float accum = 0;
         
         //fill it with totals
         for(int i = 0; i < len; i++)
@@ -37,7 +37,6 @@ class Solution {
         //go through starting points and find lowest
         for(int i = 0; i < (len-1); i++)
         {
-            Console.WriteLine(mina[i]);
             if(mina[i] < average)
             {
                 average = A[i];
