@@ -15,28 +15,24 @@ class Solution {
             total[i] = accum;
         }
 
-        int min = 0;
-        
-        //go through and find lowest difference
-        //for each starting point
-        for(int i = 1; i < len; i++)
+        //find average for 2 and 3 units for each starting point
+        for(int i = 0; i < (len-3); i++)
         {
-            min = 1000000000;
-            for(int n = i; n < len; n++)
+            if(((total[i+3]-total[i])/3)>((total[i+2]-total[i])/2))
             {
-                if(total[n] < min)
-                {
-                    min = (total[n]);
-                }
+                mina[i] = (total[i+2]-total[i])/2;
             }
-            //find average
-            min = min - total[i-1];
-            mina[i-1] = (min/(len-i));
-            Console.WriteLine(min);
-            //Console.WriteLine(mina[i-1]);
+            else
+            {
+                mina[i] = (total[i+3]-total[i])/3;
+            }
         }
-                
+        //do final starting point with 2 elements
+        mina[len-2] = (total[len-2]-total[len])/2;
+        
         float average = mina[0];
+        
+        int min = 0;
         
         //go through starting points and find lowest
         for(int i = 0; i < (len-1); i++)
