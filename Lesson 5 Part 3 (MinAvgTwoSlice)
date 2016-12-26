@@ -4,15 +4,15 @@ class Solution {
     public int solution(int[] A) {
         //create array with totals
         int len = A.Length;
-        int[] total = new int[len];
+        int[] total = new int[len+1];
         float[] mina = new float[len-1];
         int accum = 0;
         
         //fill it with totals
         for(int i = 0; i < len; i++)
         {
-            accum += A[i];
             total[i] = accum;
+            accum += A[i];
         }
 
         //find average for 2 and 3 units for each starting point
