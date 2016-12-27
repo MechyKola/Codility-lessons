@@ -1,0 +1,24 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        int len = A.Length;
+        Array.Sort(A);
+        int changes = 1;
+        
+        if (A.Length == 0)
+        {
+            return 0;
+        }
+        
+        for(int i = 1; i < len; i++)
+        {
+            if(A[i-1] != A[i])
+            {
+                changes++;
+            }
+        }
+        
+        return changes;
+    }
+}
