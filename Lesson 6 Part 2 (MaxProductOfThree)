@@ -1,0 +1,31 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        Array.Sort(A);
+        //reduce len by 1 to use len as 
+        //index of last element in A
+        int len = A.Length-1;
+        //check for negative numbers
+        //if their product is big enough
+        //replace 2nd and 3rd largest +numbers
+        if (A[len] > -1){
+        if((A[0]*A[1]) > (A[len-1]*A[len-2]))
+        {
+            return (A[0]*A[1]*A[len]);
+        }
+        else
+        {
+            return (A[len]*A[len-1]*A[len-2]);
+        }}
+        else
+        {
+            {
+                //if largest number is negative then
+                //overall number will be negative
+                //and we return number of smallest magnitude
+                return (A[len]*A[len-1]*A[len-2]);
+            }
+        }
+    }
+}
