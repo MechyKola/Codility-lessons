@@ -3,33 +3,43 @@ using System;
 class Solution {
     public int solution(int[] A) {
         int P;
-        int Q;
         int R;
-        int changes = 1;
+        int Q;
+        
+        int dist = 0;
         
         Array.Sort(A);
         int len = A.Length;
         
         int[] distinct = new int[len];  
         
-        for(int i = 0; i < len; i++)
+        for(int i = 0; i < len-1; i++)
         {
             if(A[i] != A[i+1])
             {
-                distinct[changes] = A[i];
-                changes++;
+                distinct[dist] = A[i];
+                dist++;
             }
         }
         
         if(A[len-1] != A[len-2])
         {
-            distinct[changes] = A[len-1];
-            changes++;
+            distinct[dist] = A[len-1];
+            dist++;
         }
         
-        for(int i = 0; i < len; i++)
-        {
-            ;
+        if (dist > 2){
+            for(int i = 0; i < dist-2; i++)
+            {
+                P = distinct[i];
+                R = distinct[i+1];
+                Q = distinct[i+2];
+                
+                if(P+R > Q )
+                {
+                    return 1;
+                }
+            }
         }
         
         return 0;
