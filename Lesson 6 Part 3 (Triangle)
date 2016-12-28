@@ -2,11 +2,9 @@ using System;
 
 class Solution {
     public int solution(int[] A) {
-        int P;
-        int R;
-        int Q;
-        
-        int dist = 0;
+        long P;
+        long R;
+        long Q;
         
         Array.Sort(A);
         int len = A.Length;
@@ -16,34 +14,15 @@ class Solution {
             return 0;
         }
         
-        int[] distinct = new int[len];  
-        
-        for(int i = 0; i < len-1; i++)
+        for(int i = 0; i < len-2; i++)
         {
-            if(A[i] != A[i+1])
+            P = A[i];
+            R = A[i+1];
+            Q = A[i+2];
+            
+            if((P+R>Q)&(Q+P>R)&(Q+R>P))
             {
-                distinct[dist] = A[i];
-                dist++;
-            }
-        }
-        
-        if(A[len-1] != A[len-2])
-        {
-            distinct[dist] = A[len-1];
-            dist++;
-        }
-        
-        if (dist > 2){
-            for(int i = 0; i < dist-2; i++)
-            {
-                P = distinct[i];
-                R = distinct[i+1];
-                Q = distinct[i+2];
-                
-                if((P+R>Q)&(Q+P>R)&(Q+R>P))
-                {
-                    return 1;
-                }
+                return 1;
             }
         }
         
