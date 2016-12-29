@@ -1,0 +1,32 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        int len = A.Length;
+        
+        int intersections = 0;
+        
+        byte[] used = new byte[len];
+        
+        for(int i = 2; i < len; i++)
+        {
+            for(int n = (A[i] - (i/2)); n <= (A[i] + (i/2)); n++)
+            {
+                if (used[n] == 0)
+                {
+                    intersections++;
+                }
+            }
+            used[i] = 1;
+        }
+        
+        if(intersections > 10000000)
+        {
+            return -1;
+        }
+        else
+        {
+            return intersections;
+        }
+    }
+}
