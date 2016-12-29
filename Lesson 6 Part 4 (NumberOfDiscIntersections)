@@ -10,7 +10,7 @@ class Solution {
         
         for(int i = 2; i < len; i++)
         {
-            for(int n = (A[i] - (i/2)); n <= (A[i] + (i/2)); n++)
+            for(int n = (A[i] - i); n <= (A[i] + i) & n < len; n++)
             {
                 if (used[n] == 0)
                 {
