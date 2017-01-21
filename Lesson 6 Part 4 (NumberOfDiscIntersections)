@@ -3,30 +3,43 @@ using System;
 class Solution {
     public int solution(int[] A) {
         int len = A.Length;
+        int max = 0;
+        int accum = 0;
+        float extra = 0;
         
-        int intersections = 0;
-        
-        byte[] used = new byte[len];
-        
-        for(int i = 2; i < len; i++)
+        //find range of starts
+        for (int i = 0; i < len; i++)
         {
-            for(int n = (A[i] - i); n <= (A[i] + i) & n < len; n++)
+            if (A[i] > max)
             {
-                if (used[n] == 0)
+                max = A[i];
+            }
+        }
+        
+        //create array to contain all beginnings
+        int[] starts = new int [max + len]
+        int[] count = new int [max + len + len]
+        
+        for (int i = 0; i < len; i++)
+        {
+            starts[A[i]-i+1+len]++;
+        }
+        
+        //create accumulator for starts
+        int range = count.Length;
+        for (int i = 0; i < (len+max); i++)
+        {
+            accum += starts[i];
+            count[i] = accum;
+            if (starts[i] < 2)
+            {
+                int x = 1;
+                for (int n = 0; n < starts[i]; n++)
                 {
-                    intersections++;
+                    extra += x;
+                    x++;
                 }
             }
-            used[i] = 1;
-        }
-        
-        if(intersections > 10000000)
-        {
-            return -1;
-        }
-        else
-        {
-            return intersections;
         }
     }
 }
