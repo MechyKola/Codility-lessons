@@ -37,19 +37,17 @@ class Solution {
             //check for duplicates
             if (starts[i] > 1)
             {
-                int x = 1;
-                for (int n = 0; n < starts[i]; n++)
-                {
-                    extra += x;
-                    x++;
-                }
+                extra = starts[i]*(starts[i]-1)/2;
             }
         }
+        
+        //fill in rest of circles
         for (int i = (max + len); i < range; i++)
         {
             count[i] = accum;
         }
         
+        //add up intersections 
         for (int i = 0; i < len; i++)
         {
             intersections += 
