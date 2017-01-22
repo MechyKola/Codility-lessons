@@ -2,6 +2,7 @@ using System;
 
 class Solution {
     public int solution(int[] A) {
+        //declare all variables
         int len = A.Length;
         int max = 0;
         int accum = 0;
@@ -9,6 +10,7 @@ class Solution {
         int intersections = 0;
         
         //find range of starts
+        //max is the highest number in A
         for (int i = 0; i < len; i++)
         {
             if (A[i] > max)
@@ -23,16 +25,17 @@ class Solution {
         
         for (int i = 0; i < len; i++)
         {
-            starts[A[i]-i+1+len]++;
+            starts[(A[i]-i)+len]++;
         }
         
         //create accumulator for starts
         int range = count.Length;
-        for (int i = 0; i < (len+max); i++)
+        for (int i = 0; i < (max + len); i++)
         {
             accum += starts[i];
             count[i] = accum;
-            if (starts[i] < 2)
+            //check for duplicates
+            if (starts[i] > 1)
             {
                 int x = 1;
                 for (int n = 0; n < starts[i]; n++)
@@ -42,11 +45,16 @@ class Solution {
                 }
             }
         }
+        for (int i = (max + len); i < range; i++)
+        {
+            count[i] = accum;
+        }
         
         for (int i = 0; i < len; i++)
         {
             intersections += 
-            (count[A[i]+i] - count[A[i]-i]);
+            (count[A[i]+i+len] - count[A[i]-i+len] + 
+            starts[(A[i]-i)+len] - 1);
         }
         
         intersections -= extra;
