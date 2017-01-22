@@ -34,7 +34,6 @@ class Solution {
         {
             accum += starts[i];
             count[i] = accum;
-            Console.WriteLine(accum);
             //offset for duplicates
             if (starts[i] > 1)
             {
@@ -46,7 +45,6 @@ class Solution {
         for (int i = (max + len); i < range; i++)
         {
             count[i] = accum;
-            Console.WriteLine(accum);
         }
         
         //add up intersections 
