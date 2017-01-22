@@ -21,7 +21,7 @@ class Solution {
         
         //create array to contain all beginnings
         int[] starts = new int [max + len];
-        int[] count = new int [max + len + len + 1];
+        int[] count = new int [max + len + len];
         
         for (int i = 0; i < len; i++)
         {
