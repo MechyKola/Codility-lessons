@@ -5,7 +5,8 @@ class Solution {
         int len = A.Length;
         int max = 0;
         int accum = 0;
-        float extra = 0;
+        int extra = 0;
+        int intersections = 0;
         
         //find range of starts
         for (int i = 0; i < len; i++)
@@ -17,8 +18,8 @@ class Solution {
         }
         
         //create array to contain all beginnings
-        int[] starts = new int [max + len]
-        int[] count = new int [max + len + len]
+        int[] starts = new int [max + len];
+        int[] count = new int [max + len + len + 1];
         
         for (int i = 0; i < len; i++)
         {
@@ -41,5 +42,20 @@ class Solution {
                 }
             }
         }
+        
+        for (int i = 0; i < len; i++)
+        {
+            intersections += 
+            (count[A[i]+i] - count[A[i]-i]);
+        }
+        
+        intersections -= extra;
+        
+        if (intersections > 10000000)
+        {
+            return -1;
+        }
+        
+        return intersections;
     }
 }
