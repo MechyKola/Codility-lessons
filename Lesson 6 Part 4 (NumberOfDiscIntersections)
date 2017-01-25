@@ -25,13 +25,15 @@ class Solution {
         
         for (int i = 0; i < len; i++)
         {
-            starts[(A[i]-i)+len]++;
+            //Console.WriteLine(i - A[i]);
+            starts[(len + i - A[i] - 1)]++;
         }
         
         //create accumulator for starts
         int range = count.Length;
         for (int i = 0; i < (max + len); i++)
         {
+            //Console.WriteLine(starts[i]);
             accum += starts[i];
             count[i] = accum;
             //offset for duplicates
