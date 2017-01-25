@@ -26,7 +26,7 @@ class Solution {
         for (int i = 0; i < len; i++)
         {
             //Console.WriteLine(i - A[i]);
-            starts[max - 1 + i - A[i]]++;
+            starts[max + i - A[i]]++;
         }
         
         //create accumulator for starts
@@ -53,8 +53,8 @@ class Solution {
         for (int i = 0; i < len; i++)
         {
             intersections += 
-            (count[max+i+A[i]-1] - count[max+i-A[i]-1] + 
-            starts[max+i-A[i]-1] - 1);
+            (count[max+i+A[i]] - count[max+i-A[i]] + 
+            starts[max+i-A[i]] - 1);
         }
         
         intersections -= extra;
