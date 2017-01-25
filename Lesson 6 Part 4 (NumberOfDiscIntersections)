@@ -21,11 +21,11 @@ class Solution {
         
         //create array to contain all beginnings
         int[] starts = new int [max + len];
-        int[] count = new int [max + len + len];
+        int[] count = new int [max + max + len];
         
         for (int i = 0; i < len; i++)
         {
-            //Console.WriteLine(i - A[i]);
+            //Console.WriteLine(max + i - A[i]);
             starts[max + i - A[i]]++;
         }
         
