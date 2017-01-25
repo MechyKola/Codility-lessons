@@ -53,8 +53,8 @@ class Solution {
         for (int i = 0; i < len; i++)
         {
             intersections += 
-            (count[A[i]+i+len] - count[A[i]-i+len] + 
-            starts[(A[i]-i)+len] - 1);
+            (count[len+i+A[i]-1] - count[len+i-A[i]-1] + 
+            starts[len+i-A[i]-1] - 1);
         }
         
         intersections -= extra;
