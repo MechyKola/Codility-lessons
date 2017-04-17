@@ -1,0 +1,77 @@
+using System;
+using System.Collections.Generic;
+
+class Solution {
+    public int solution(string S) {
+        int len = S.Length;
+        
+        if (len == 0)
+        {
+            return 1;
+        }
+        
+        Stack<string> nest = new Stack<string> ();
+        
+        nest.Push(S.Substring(0,1));
+        
+        for(int i = 1; i < len; i++)
+        {
+            Console.WriteLine(nest.Count);
+            if (nest.Count == 0 && S.Substring(i,1) == "]" || S.Substring(i,1) == "}" || S.Substring(i,1) == ")")
+            {
+                return 0;
+            }
+            
+            string top = nest.Peek();
+            
+            switch (S.Substring(i,1))
+            {
+                case "]":
+                    if (top == "[")
+                    {
+                        nest.Pop();
+                    }
+                    else
+                    {
+                        nest.Push(S.Substring(i,1));
+                    }
+                    break;
+                    
+                case "}":
+                    if (top == "{")
+                    {
+                        nest.Pop();
+                    }
+                    else
+                    {
+                        nest.Push(S.Substring(i,1));
+                    }
+                    break;
+                    
+                case ")":
+                    if (top == "(")
+                    {
+                        nest.Pop();
+                    }
+                    else
+                    {
+                        nest.Push(S.Substring(i,1));
+                    }
+                    break;
+                    
+                default:
+                    nest.Push(S.Substring(i,1));
+                    break;
+            }
+        }
+            
+        if (nest.Count == 0)
+        {
+            return 1;
+        }
+        else
+        {
+            return 0;
+        }
+    }
+}
