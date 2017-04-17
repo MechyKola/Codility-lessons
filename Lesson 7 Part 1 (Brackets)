@@ -22,48 +22,55 @@ class Solution {
                 {
                     return 0;
                 }
-            }
-            
-            string top = nest.Peek();
-            
-            switch (S.Substring(i,1))
-            {
-                case "]":
-                    if (top == "[")
-                    {
-                        nest.Pop();
-                    }
-                    else
-                    {
-                        nest.Push(S.Substring(i,1));
-                    }
-                    break;
-                    
-                case "}":
-                    if (top == "{")
-                    {
-                        nest.Pop();
-                    }
-                    else
-                    {
-                        nest.Push(S.Substring(i,1));
-                    }
-                    break;
-                    
-                case ")":
-                    if (top == "(")
-                    {
-                        nest.Pop();
-                    }
-                    else
-                    {
-                        nest.Push(S.Substring(i,1));
-                    }
-                    break;
-                    
-                default:
+                else
+                {
                     nest.Push(S.Substring(i,1));
-                    break;
+                }
+            }
+            else
+            {
+                    
+                string top = nest.Peek();
+                
+                switch (S.Substring(i,1))
+                {
+                    case "]":
+                        if (top == "[")
+                        {
+                            nest.Pop();
+                        }
+                        else
+                        {
+                            nest.Push(S.Substring(i,1));
+                        }
+                        break;
+                        
+                    case "}":
+                        if (top == "{")
+                        {
+                            nest.Pop();
+                        }
+                        else
+                        {
+                            nest.Push(S.Substring(i,1));
+                        }
+                        break;
+                        
+                    case ")":
+                        if (top == "(")
+                        {
+                            nest.Pop();
+                        }
+                        else
+                        {
+                            nest.Push(S.Substring(i,1));
+                        }
+                        break;
+                        
+                    default:
+                        nest.Push(S.Substring(i,1));
+                        break;
+                }
             }
         }
             
