@@ -4,6 +4,7 @@ using System.Collections.Generic;
 class Solution {
     public int solution(int[] A, int[] B) {
         int len = A.Length;
+        int passed = 0;
         
         Stack<int> fish = new Stack<int>();
         
@@ -17,6 +18,7 @@ class Solution {
         while ((i < len) && (B[i] == 0))
         {
             i++;
+            passed++;
         }
         
         if (i == len-1)
@@ -31,15 +33,32 @@ class Solution {
         {
             if (B[i] == 0)
             {
-                if fish.Count
-                if (A[i] > fish.Peek();
+                if (fish.Count > 0) 
+                {
+                    if (A[i] > fish.Peek())
+                    {
+                        fish.Pop();
+                        Console.WriteLine("pop " + i);
+                    }
+                    else
+                    {
+                        i++;
+                    }
+                }
+                else
+                {
+                    passed++;
+                    Console.WriteLine("pass " + i);
+                    i++;
+                }
             }
-            
-            if (B[i] == 1)
+            else
             {
                 fish.Push(A[i]);
                 i++;
             }
         }
+        
+        return (passed + fish.Count);
     }
 }
