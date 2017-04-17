@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+
+class Solution {
+    public int solution(int[] A, int[] B) {
+        int len = A.Length;
+        
+        Stack<int> fish = new Stack<int>();
+        
+        if (len == 1)
+        {
+            return 1;
+        }
+        
+        int i = 0;
+        
+        while ((i < len) && (B[i] == 0))
+        {
+            i++;
+        }
+        
+        if (i == len-1)
+        {
+            return len;
+        }
+        
+        fish.Push(A[i]);
+        i++;
+        
+        while (i < len)
+        {
+            if (B[i] == 0)
+            {
+                if fish.Count
+                if (A[i] > fish.Peek();
+            }
+            
+            if (B[i] == 1)
+            {
+                fish.Push(A[i]);
+                i++;
+            }
+        }
+    }
+}
