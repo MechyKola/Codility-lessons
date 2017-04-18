@@ -15,7 +15,7 @@ class Solution {
         
         int i = 0;
         
-        while ((i < len) && (B[i] == 0))
+        while ((i < (len-1)) && (B[i] == 0))
         {
             i++;
             passed++;
@@ -38,7 +38,6 @@ class Solution {
                     if (A[i] > fish.Peek())
                     {
                         fish.Pop();
-                        Console.WriteLine("pop " + i);
                     }
                     else
                     {
@@ -48,7 +47,6 @@ class Solution {
                 else
                 {
                     passed++;
-                    Console.WriteLine("pass " + i);
                     i++;
                 }
             }
