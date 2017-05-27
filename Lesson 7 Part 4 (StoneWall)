@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+
+class Solution {
+    public int solution(int[] H) {
+		//declare integer to keep track of stack height
+		int height = 0;
+		//find length of array
+		int len = H.Length;
+		//keep track of number of rectangles
+		int count = 0;
+		//stack of rectangles
+		Stack<int> rectangles = new Stack<int>();
+
+		for(int i = 0; i < len; i++)
+		{
+			if (H[i]> height)
+			{
+				//if height increases add a rectangle
+				rectangles.Push(H[i] - height);
+				count++;
+			}
+			else if (H[i] < height)
+			{
+				//if height decrease remove rectangle and see
+				//if rectangles below are of correct height
+				height -= rectangles.Pop();
+			}
+		}
+		
+		//return number of rectangles used in total
+		return count;
+    }
+}
