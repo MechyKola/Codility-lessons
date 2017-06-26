@@ -4,31 +4,106 @@ using System.Collections.Generic;
 class Solution {
     public int solution(int[] A) {
         int len = A.Length;
-        //stack for finiding leader
+        int led = len/2;
+        
+        //stack for finding leader
         Stack<int> leader = new Stack<int>();
         
         //number of equi leaders
         int equi = 0;
         
+        //arrays to store leaders
+        int[] forwards = new int[len];
+        int[] backwards = new int[len];
+        
+        //set first elements in arrays
+        forwards[0] = A[0];
+        backwards[0] = A[len-1];
         
         //first element added
         leader.Push(A[0]);
         
-        //find leader
-        for(int i = 0; i < len; i++)
+        //find leader forwards
+        for(int i = 1; i < len; i++)
         {
             if(leader.Count == 0)
             {
-                leader.Pop(A[i]);
-            }
-            else if(leader.Peek == A[i])
-            {
-                leader.Pop;
+                leader.Push(A[i]);
             }
             else
             {
-                leader.Push(A[i]);
+                if(leader.Peek() != A[i])
+                {
+                    leader.Pop();
+                }
+                else
+                {
+                    leader.Push(A[i]);
+                }
+            }
+            
+            if(leader.Count != 0)
+            {
+                int count = 0;
+                
+                //check if it is leader and if it is
+                //add entry to array
+                for(int n = 0; n < i; n++)
+                {
+                    if(A[n] == leader.Peek())
+                    {
+                        count++;
+                    }
+                }
+                if(count > i/2)
+                {
+                    forwards[i] = leader.Peek();
+                }
             }
         }
+        
+        //clear leader stack
+        leader.Clear();
+        
+        //backwards array
+        for(int i = (len - 2); i > 0; i++)
+        {
+            if(leader.Count == 0)
+            {
+                leader.Push(A[i]);
+            }
+            else
+            {
+                if(leader.Peek() != A[i])
+                {
+                    leader.Pop();
+                }
+                else
+                {
+                    leader.Push(A[i]);
+                }
+            }
+            
+            if(leader.Count != 0)
+            {
+                int count = 0;
+                
+                //check if it is leader and if it is
+                //add entry to array
+                for(int n = (len - 1); n > i; n++)
+                {
+                    if(A[n] == leader.Peek())
+                    {
+                        count++;
+                    }
+                }
+                if(count > i/2)
+                {
+                    backwards[i] = leader.Peek();
+                }
+            }
+        }
+        
+        return -1;
     }
 }
