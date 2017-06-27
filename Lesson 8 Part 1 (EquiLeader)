@@ -102,6 +102,7 @@ class Solution {
                 if(count > (len - i)/2)
                 {
                     backwards[i] = leader.Peek();
+                    Console.WriteLine(leader.Peek ());
                 }
             }
         }
@@ -110,7 +111,9 @@ class Solution {
         //are equivalent
         for (int i = 0; i < len; i++)
         {
-            if(forwards[i] != null && backwards[i] != null)
+            //Console.WriteLine(forwards[i]);
+            //Console.WriteLine(backwards[i]);
+            if(forwards[i] != 0 && backwards[i] != 0)
             {
                 if(forwards[i] == backwards[i])
                 {
