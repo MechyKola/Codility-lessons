@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 class Solution {
     public int solution(int[] A) {
+        //length of array
         int len = A.Length;
-        int led = len/2;
         
         //stack for finding leader
         Stack<int> leader = new Stack<int>();
@@ -48,14 +48,14 @@ class Solution {
                 
                 //check if it is leader and if it is
                 //add entry to array
-                for(int n = 0; n < i; n++)
+                for(int n = 0; n <= i; n++)
                 {
                     if(A[n] == leader.Peek())
                     {
                         count++;
                     }
                 }
-                if(count > i/2)
+                if(count > (i + 1)/2)
                 {
                     forwards[i] = leader.Peek();
                 }
@@ -64,9 +64,11 @@ class Solution {
         
         //clear leader stack
         leader.Clear();
+        //and load lest element
+        leader.Push(A[len-1]);
         
         //backwards array
-        for(int i = (len - 2); i > 0; i++)
+        for(int i = (len - 2); i >= 0; i--)
         {
             if(leader.Count == 0)
             {
@@ -90,20 +92,33 @@ class Solution {
                 
                 //check if it is leader and if it is
                 //add entry to array
-                for(int n = (len - 1); n > i; n++)
+                for(int n = (len - 1); n >= i; n--)
                 {
                     if(A[n] == leader.Peek())
                     {
                         count++;
                     }
                 }
-                if(count > i/2)
+                if(count > (len - i)/2)
                 {
                     backwards[i] = leader.Peek();
                 }
             }
         }
         
-        return -1;
+        //go through 2 arrays and check if leaders
+        //are equivalent
+        for (int i = 0; i < len; i++)
+        {
+            if(forwards[i] != null && backwards[i] != null)
+            {
+                if(forwards[i] == backwards[i])
+                {
+                    equi++;
+                }
+            }
+        }
+        
+        return equi;
     }
 }
