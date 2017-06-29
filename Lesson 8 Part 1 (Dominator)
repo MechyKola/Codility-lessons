@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+
+class Solution {
+    public int solution(int[] A) {
+        int len = A.Length;
+        int count = 0;
+        int candidate;
+        
+        Stack<int> leader = new Stack<int>();
+        
+        for(int i = 0; i < len; i++)
+        {
+            if(leader.Count == 0)
+            {
+                leader.Push(A[i]);
+            }
+            else
+            {
+                if(leader.Peek() != A[i])
+                {
+                    leader.Pop();
+                }
+                else
+                {
+                    leader.Push(A[i]);
+                }
+            }
+        }
+        
+        if(leader.Count != 0)
+        {
+            candidate = leader.Peek();
+        }
+        else
+        {
+            return -1;
+        }
+        
+        for(int i = 0; i < len; i++)
+        {
+            if(A[i] == candidate)
+            {
+                count++;
+            }
+        }
+        
+        if(count > len/2)
+        {
+            for(int i = 0; i < len; i++)
+            {
+                if(A[i] == candidate)
+                {
+                    return i;
+                }
+            }
+        }
+        
+        return -1;
+    }
+}
