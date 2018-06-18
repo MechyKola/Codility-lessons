@@ -1,9 +1,4 @@
 using System;
-// you can also use other imports, for example:
-// using System.Collections.Generic;
-
-// you can write to stdout for debugging purposes, e.g.
-// Console.WriteLine("this is a debug message");
 
 class Solution {
     public int solution(int[] A) {
@@ -15,13 +10,13 @@ class Solution {
         //so that it contains the amounts
         //of all the endings, so they can be
         //compared and the largest one is selected
-        int[] endingSums = new int[lengthOfA];
+        int[] endingSum = new int[lengthOfA];
         
         //declare variable which will be used
         int subtotal = 0;
         
         //populate the array
-        for( int i = 0; lengthOfA; i++) {
+        for( int i = 0; i < lengthOfA; i++) {
             
             //add current array item to subtotal
             subtotal += A[i];
@@ -38,10 +33,10 @@ class Solution {
         int maxEndingValue = 0;
         
         //go through the array and select the maximum ending value
-        for( int i = 0; lengthOfA; i++) {
+        for( int i = 0; i < lengthOfA; i++) {
             
             //compare the endings
-            if(endingSum[i] > maxEnding) {
+            if(endingSum[i] > maxEndingValue) {
                 
                 //save the maximum ending value
                 maxEndingValue = endingSum[i];
@@ -61,10 +56,10 @@ class Solution {
         int minEndingValue = 0;
         
         //go through the array and select the minimum ending value
-        for( int i = 0; maxEndingIndex; i++) {
+        for( int i = 0; i < maxEndingIndex; i++) {
             
             //compare the endings
-            if(endingSum[i] < maxEnding) {
+            if(endingSum[i] < maxEndingValue) {
                 
                 //save the minimum ending value
                 minEndingValue = endingSum[i];
