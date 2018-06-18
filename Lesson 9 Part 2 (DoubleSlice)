@@ -1,0 +1,25 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        
+        //get length of array
+        int lengthOfA = A.Length;
+        
+        //create array of length A,
+        //containing the subtotals
+        //of all value starting from the
+        //first to the current one
+        int[] subtotals = new int[lengthOfA];
+        
+        //populate the array
+        for( int i = 0; i < lengthOfA; i++) {
+            
+            //add difference to array
+            subtotals[i] = A[i] + subtotals[i-1];
+        }
+        
+        
+        return maxSlice;
+    }
+}
