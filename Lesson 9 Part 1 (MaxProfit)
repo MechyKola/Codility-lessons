@@ -48,12 +48,12 @@ class Solution {
                 
                 //save index of maximum ending value
                 maxEndingIndex = i;
-                
-                //debug
-                Console.WriteLine(maxEndingIndex);
             }
         }
         
+                
+                //debug
+                Console.WriteLine(maxEndingIndex);
         
         //go through array and do the same as above but
         //find the lowest sum up to (and including) the
@@ -61,25 +61,25 @@ class Solution {
         
         //declare minimum ending value and index variables
         int minEndingIndex = 0;
-        int minEndingValue = -500000;
+        int minEndingValue = 500000;
         
         //go through the array and select the minimum ending value
         for( int i = 0; i < maxEndingIndex; i++) {
             
             //compare the endings
-            if(endingSum[i] < maxEndingValue) {
+            if(endingSum[i] < minEndingValue) {
                 
                 //save the minimum ending value
                 minEndingValue = endingSum[i];
                 
                 //save index of minimum ending value
                 minEndingIndex = i;
-                
-                //debug
-                Console.WriteLine(minEndingIndex);
             }
         }
         
+                //debug
+                Console.WriteLine(minEndingIndex);
+                
         //create integer to store maxiumum transaction
         int maxTransaction = 0;
         
