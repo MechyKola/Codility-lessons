@@ -18,78 +18,35 @@ class Solution {
             differences[i] = A[i] - A[0];
             
             //debug - output the current subtotal
-            //Console.WriteLine(endingSum[i]);
+            //Console.WriteLine(differences[i]);
         }
         
-        //create an integer to store the index of the
-        //maximum value ending
-        //and variable for storing current maximum ending
-        int maxEndingIndex = 0;
-        int maxEndingValue = -500000;
         
-        //go through the array and select the maximum ending value
-        for( int i = 1; i < lengthOfA; i++) {
-            
-            //compare the endings
-            if(differences[i] > maxEndingValue) {
-                
-                //save the maximum ending value
-                maxEndingValue = differences[i];
-                
-                //debug - output current max
-                //Console.WriteLine(maxEndingValue);
-                
-                //save index of maximum ending value
-                maxEndingIndex = i;
-            }
-        }
+        //integer to keep track of smallest value
+        int smallest = 0;
         
-                
-        //debug
-        //Console.WriteLine(maxEndingIndex);
-        
-        //go through array and do the same as above but
-        //find the lowest sum up to (and including) the
-        //largest sum
-        
-        //declare minimum ending value and index variables
-        int minEndingIndex = 0;
-        int minEndingValue = 500000;
-        
-        //go through the array and select the minimum ending value
-        for( int i = 0; i < maxEndingIndex; i++) {
-            
-            //compare the endings
-            if(differences[i] < minEndingValue) {
-                
-                //save the minimum ending value
-                minEndingValue = differences[i];
-                
-                //save index of minimum ending value
-                minEndingIndex = i;
-            }
-        }
-        
-        //debug
-        //Console.WriteLine(minEndingIndex);
-                
-        //create integer to store maxiumum transaction
+        //integer to track highest difference
         int maxTransaction = 0;
         
-        //set maximum transaction to be the maximum ending
-        //and take away the largest loss
-        maxTransaction = maxEndingValue - minEndingValue;
-        
-        //return 0 if no profit can be made
-        if( maxTransaction <= 0) {
+        for( int i = 0; i < lengthOfA; i++) {
             
-            //return 0 because maximum transaction is below 0
-            //or equal to 0, as that means no profit can be made
-            return 0;
-        } else {
-            
-            //otherwise retrun the largest possible transaction
-            return maxTransaction;
+            //set smallest
+            if(differences[i] < smallest) {
+                
+                //store the smallest difference in a variable
+                //(smallest up to this index)
+                smallest = differences[i];
+            }
+                
+            //set the maximum difference the current value
+            //take away previous smallest
+            if((differences[i] - smallest) > maxTransaction) {
+                
+                //set maxTransaction to new maximum
+                maxTransaction = differences[i] - smallest;
+            }
         }
+        
+        return maxTransaction;
     }
 }
