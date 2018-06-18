@@ -9,20 +9,13 @@ class Solution {
         //create array of length A
         //so that it contains the differences
         //between all the values and the first
-        int[] endingSum = new int[lengthOfA];
-        
-        //declare variable which will be used
-        int subtotal = 0;
+        int[] differences = new int[lengthOfA];
         
         //populate the array
         for( int i = 0; i < lengthOfA; i++) {
             
-            //add current array item to subtotal
-            subtotal = A[i] - A[0];
-            
-            //add subtotal entry to the array
-            //of sums of endings
-            endingSum[i] = subtotal;
+            //add difference to array
+            differences[i] = A[i] - A[0];
             
             //debug - output the current subtotal
             //Console.WriteLine(endingSum[i]);
@@ -38,10 +31,10 @@ class Solution {
         for( int i = 1; i < lengthOfA; i++) {
             
             //compare the endings
-            if(endingSum[i] > maxEndingValue) {
+            if(differences[i] > maxEndingValue) {
                 
                 //save the maximum ending value
-                maxEndingValue = endingSum[i];
+                maxEndingValue = differences[i];
                 
                 //debug - output current max
                 //Console.WriteLine(maxEndingValue);
@@ -52,8 +45,8 @@ class Solution {
         }
         
                 
-                //debug
-                Console.WriteLine(maxEndingIndex);
+        //debug
+        //Console.WriteLine(maxEndingIndex);
         
         //go through array and do the same as above but
         //find the lowest sum up to (and including) the
@@ -67,29 +60,25 @@ class Solution {
         for( int i = 0; i < maxEndingIndex; i++) {
             
             //compare the endings
-            if(endingSum[i] < minEndingValue) {
+            if(differences[i] < minEndingValue) {
                 
                 //save the minimum ending value
-                minEndingValue = endingSum[i];
+                minEndingValue = differences[i];
                 
                 //save index of minimum ending value
                 minEndingIndex = i;
             }
         }
         
-                //debug
-                Console.WriteLine(minEndingIndex);
+        //debug
+        //Console.WriteLine(minEndingIndex);
                 
         //create integer to store maxiumum transaction
         int maxTransaction = 0;
         
-        //set the maximum transaction value to be the largest ending value - the lowest ending value (initial cost in context)
-        if(minEndingValue < 0) {
-            
-            //set maximum transaction to be the maximum ending
-            //and take away the largest loss
-            maxTransaction = maxEndingValue - minEndingValue;
-        }
+        //set maximum transaction to be the maximum ending
+        //and take away the largest loss
+        maxTransaction = maxEndingValue - minEndingValue;
         
         //return 0 if no profit can be made
         if( maxTransaction <= 0) {
