@@ -1,0 +1,87 @@
+using System;
+
+class Solution {
+    public int solution(int[] A) {
+        
+        //get length of array
+        int lengthOfA = A.Length;
+        
+        //create integer to store the maximum slice value
+        int maxSlice = A[0];
+        
+        //create array of length A,
+        //containing the subtotals
+        //of all value starting from the
+        //first to the current one
+        
+        //it will also track the
+        //maximum and minimum subtotals
+        //up to that point, and kepp updating the
+        //maxSlice value
+        
+        //declare the array
+        int[] subtotals = new int[lengthOfA];
+        
+        //populate first element
+        subtotals[0] = A[0];
+        
+        //integers to maintain minimum subtotals
+        int minimumValue = A[0];
+        int minimumIndex = 0;
+        
+        //integers to maintain maximum subtotals
+        int maximumValue = A[0];
+        int maximumIndex = 0;
+        
+        //populate the array
+        for( int i = 1; i < lengthOfA; i++) {
+            
+            //add difference to array
+            subtotals[i] = A[i] + subtotals[i-1];
+            
+            //perform checks to update minimums
+            //and maximums if needed
+            if(subtotals[i] > maximumValue) {
+                
+                //update integers of maximums
+                //since the new subtotal is larger
+                //than the previous largest one
+                maximumIndex = i;
+                maximumValue = subtotals[i];
+                
+                //update maxSlice if smaller than
+                //maxtotal
+                if(maximumValue > maxSlice) {
+                    
+                    //update
+                    maxSlice = maximumValue;
+                }
+            }
+            
+            if(subtotals[i] < minimumValue) {
+                
+                //update integers of minimums
+                //since the new subtotal is larger
+                //than the previous largest one
+                minimumIndex = i;
+                minimumValue = subtotals[i];
+            }
+                
+            //perform checks to see if the
+            //maxSlice needs to be updated
+            if(maximumValue - minimumValue > maxSlice &&
+            minimumIndex < maximumIndex) {
+                
+                //if the smallest subtotal so far
+                //is a minimum then the maximum will
+                //be increased if it is taken away,
+                //so if this is larger than the
+                //current maxSlice then it is updated
+                maxSlice = maximumValue - minimumValue;
+            }
+            
+        }
+        
+        return maxSlice;
+    }
+}
