@@ -3,23 +3,107 @@ using System;
 class Solution {
     public int solution(int[] A) {
         
-        //get length of array
+        // get length of array
         int lengthOfA = A.Length;
         
-        //create array of length A,
-        //containing the subtotals
-        //of all value starting from the
-        //first to the current one
-        int[] subtotals = new int[lengthOfA];
+        // declare variable sotring the maximum
+        int maxSum = -20000;
         
-        //populate the array
-        for( int i = 0; i < lengthOfA; i++) {
+        // create array of length A,
+        // containing the largest sum
+        // of the value to the left of the
+        // value (X -> Y)
+        int[] maxOnLeft = new int[lengthOfA];
+        
+        // create similar array for the
+        // right side (y -> Z)
+        int[] maxOnRight = new int[lengthOfA];
+        
+        
+        // fill in individual cases, where there
+        // are not going to be any elements added
+        maxOnRight[(lengthOfA-1)] = 0;
+        maxOnRight[(lengthOfA-2)] = 0;
+        maxOnLeft[0] = 0;
+        maxOnLeft[1] = 0;
+        
+        
+        // various useful variable
+        int counter = 0;
+        int lastNegativeValue = 0;
+        
+        
+        // populate the array of values on the right
+        
+        // this will set the value to the maximum sum
+        // on the right of the array
+        for( int i = (lengthOfA - 3); i > 0; i--) {
             
-            //add difference to array
-            subtotals[i] = A[i] + subtotals[i-1];
+            // add value to counter
+            counter += A[i+1];
+            
+            
+            // if the counter is negative then
+            // record the value so that it
+            // can be subtracted later
+            if (counter < 0) {
+                
+                // store value
+                lastNegativeValue = counter;
+            }
+            
+            
+            // set the new maxOnRight value to be
+            // current counter value take away any
+            // previous negative sums
+            maxOnRight[i] = counter - lastNegativeValue;
         }
         
         
-        return maxSlice;
+        // repeat the process going left to right
+        // however this time also updating maximum
+        // sum when needed
+        
+        //reset counters
+        counter = 0;
+        lastNegativeValue = 0;
+        
+        //run actual loop
+        for( int i = 2; i > (lengthOfA - 1); i++) {
+            
+            // add value to counter
+            counter += A[i-1];
+            
+            
+            // if the counter is negative then
+            // record the value so that it
+            // can be subtracted later
+            if (counter < 0) {
+                
+                // store value
+                lastNegativeValue = counter;
+            }
+            
+            
+            // set the new maxOnRight value to be
+            // current counter value take away any
+            // previous negative sums
+            maxOnLeft[i] = counter - lastNegativeValue;
+            
+            
+            // see if maxOnLeft + maxOnRight is larger
+            // than the previous largest, so that it
+            // can be updated
+            if ((maxOnLeft[i] + maxOnRight[i]) > maxSum) {
+                
+                //update maximum sum
+                maxSum = (maxOnLeft[i] + maxOnRight[i]);
+            }
+            
+        }
+        
+        
+        // return the maximum sum
+        return maxSum;
     }
 }
