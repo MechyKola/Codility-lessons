@@ -57,6 +57,7 @@ class Solution {
             // current counter value take away any
             // previous negative sums
             maxOnRight[i] = counter - lastNegativeValue;
+            
         }
         
         
@@ -69,7 +70,7 @@ class Solution {
         lastNegativeValue = 0;
         
         //run actual loop
-        for( int i = 2; i > (lengthOfA - 1); i++) {
+        for( int i = 2; i < (lengthOfA - 1); i++) {
             
             // add value to counter
             counter += A[i-1];
@@ -89,7 +90,6 @@ class Solution {
             // current counter value take away any
             // previous negative sums
             maxOnLeft[i] = counter - lastNegativeValue;
-            
             
             // see if maxOnLeft + maxOnRight is larger
             // than the previous largest, so that it
