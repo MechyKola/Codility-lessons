@@ -1,13 +1,18 @@
 using System;
+using System.Numerics;
 
 class Solution {
     public int solution(int[] A) {
+        
+        
+        //using BigInteger to prevent
+        //under/overflow
         
         //get length of array
         int lengthOfA = A.Length;
         
         //create integer to store the maximum slice value
-        int maxSlice = A[0];
+        BigInteger maxSlice = A[0];
         
         //create array of length A,
         //containing the subtotals
@@ -20,17 +25,17 @@ class Solution {
         //maxSlice value
         
         //declare the array
-        int[] subtotals = new int[lengthOfA];
+        BigInteger[] subtotals = new BigInteger[lengthOfA];
         
         //populate first element
         subtotals[0] = A[0];
         
         //integers to maintain minimum subtotals
-        int minimumValue = A[0];
+        BigInteger minimumValue = A[0];
         int minimumIndex = 0;
         
         //integers to maintain maximum subtotals
-        int maximumValue = A[0];
+        BigInteger maximumValue = A[0];
         int maximumIndex = 0;
         
         //populate the array
@@ -84,6 +89,8 @@ class Solution {
             
         }
         
-        return maxSlice;
+        int maxSliceInt = (int) maxSlice;
+        
+        return Convert.ToInt32(maxSliceInt);
     }
 }
