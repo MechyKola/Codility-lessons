@@ -39,10 +39,11 @@ class Solution {
         // on the right of the array
         for( int i = (lengthOfA - 2); i > 0; i--) {
             
-            // if the counter is negative then
+            // if the counter is lower than
+            // previous minimum then
             // record the value so that it
             // can be subtracted later
-            if (counter < 0) {
+            if (counter < lastNegativeValue) {
                 
                 // store value
                 lastNegativeValue = counter;
@@ -72,10 +73,11 @@ class Solution {
         //run actual loop
         for( int i = 1; i < (lengthOfA - 1); i++) {
             
-            // if the counter is negative then
+            // if the counter is lower than
+            // previous minimum then
             // record the value so that it
             // can be subtracted later
-            if (counter < 0) {
+            if (counter < lastNegativeValue) {
                 
                 // store value
                 lastNegativeValue = counter;
