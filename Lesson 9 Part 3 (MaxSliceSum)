@@ -1,96 +1,70 @@
 using System;
-using System.Numerics;
 
 class Solution {
     public int solution(int[] A) {
         
-        
-        //using BigInteger to prevent
-        //under/overflow
-        
-        //get length of array
+        // get length of array
         int lengthOfA = A.Length;
         
-        //create integer to store the maximum slice value
-        BigInteger maxSlice = A[0];
+        // declare variable storing the maximum
+        // however initialise with minimum
+        long maxSum = -1000000;
         
-        //create array of length A,
-        //containing the subtotals
-        //of all value starting from the
-        //first to the current one
+        // create array of length A,
+        // containing the largest sum
+        // of the value to the left of the
+        // value and including the value
+        long[] maxOnLeft = new long[lengthOfA];
         
-        //it will also track the
-        //maximum and minimum subtotals
-        //up to that point, and kepp updating the
-        //maxSlice value
         
-        //declare the array
-        BigInteger[] subtotals = new BigInteger[lengthOfA];
+        // declare various useful variables
+        long counter = 0;
+        long lastNegativeValue = 0;
         
-        //populate first element
-        subtotals[0] = A[0];
         
-        //integers to maintain minimum subtotals
-        BigInteger minimumValue = A[0];
-        int minimumIndex = 0;
+        // populate the array of values on the right
         
-        //integers to maintain maximum subtotals
-        BigInteger maximumValue = A[0];
-        int maximumIndex = 0;
+        // this will set the value to the maximum sum
+        // on the left of the array
         
-        //populate the array
-        for( int i = 1; i < lengthOfA; i++) {
-            
-            //add difference to array
-            subtotals[i] = A[i] + subtotals[i-1];
+        // run actual loop
+        for( int i = 0; i < lengthOfA; i++) {
             
             
-            //perform checks to update minimums
-            //and maximums if needed
-            if(subtotals[i] > maximumValue) {
+            // if the counter is lower than
+            // previous minimum then
+            // record the value so that it
+            // can be subtracted later
+            if (counter < lastNegativeValue) {
                 
-                //update integers of maximums
-                //since the new subtotal is larger
-                //than the previous largest one
-                maximumIndex = i;
-                maximumValue = subtotals[i];
-                
-                //update maxSlice if smaller than
-                //maxtotal
-                if(maximumValue > maxSlice) {
-                    
-                    //update
-                    maxSlice = maximumValue;
-                }
+                // store value
+                lastNegativeValue = counter;
             }
             
-            if(subtotals[i] < minimumValue) {
-                
-                //update integers of minimums
-                //since the new subtotal is larger
-                //than the previous largest one
-                minimumIndex = i;
-                minimumValue = subtotals[i];
-            }
+            // add value to counter
+            counter += A[i];
             
             
-            //perform checks to see if the
-            //maxSlice needs to be updated
-            if(subtotals[i] - minimumValue > maxSlice &&
-            minimumIndex < i) {
+            // set the new maxOnLeft value to be
+            // current counter value take away any
+            // previous negative sums
+            maxOnLeft[i] = counter - lastNegativeValue;
+            
+            
+            
+            // see if maxOnLeft larger than previous
+            // maxSum then update maxSum
+            if (maxOnLeft[i] > maxSum) {
                 
-                //if the smallest subtotal so far
-                //is a minimum then the maximum will
-                //be increased if it is taken away,
-                //so if this is larger than the
-                //current maxSlice then it is updated
-                maxSlice = subtotals[i] - minimumValue;
+                // update maximum sum
+                maxSum = maxOnLeft[i];
             }
             
         }
         
-        int maxSliceInt = (int) maxSlice;
         
-        return Convert.ToInt32(maxSliceInt);
+        // return the maximum sum,
+        // converting to int
+        return Convert.ToInt32(maxSum);
     }
 }
