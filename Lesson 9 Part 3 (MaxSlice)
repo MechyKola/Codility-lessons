@@ -39,6 +39,7 @@ class Solution {
             //add difference to array
             subtotals[i] = A[i] + subtotals[i-1];
             
+            
             //perform checks to update minimums
             //and maximums if needed
             if(subtotals[i] > maximumValue) {
@@ -66,18 +67,19 @@ class Solution {
                 minimumIndex = i;
                 minimumValue = subtotals[i];
             }
-                
+            
+            
             //perform checks to see if the
             //maxSlice needs to be updated
-            if(maximumValue - minimumValue > maxSlice &&
-            minimumIndex < maximumIndex) {
+            if(subtotals[i] - minimumValue > maxSlice &&
+            minimumIndex < i) {
                 
                 //if the smallest subtotal so far
                 //is a minimum then the maximum will
                 //be increased if it is taken away,
                 //so if this is larger than the
                 //current maxSlice then it is updated
-                maxSlice = maximumValue - minimumValue;
+                maxSlice = subtotals[i] - minimumValue;
             }
             
         }
