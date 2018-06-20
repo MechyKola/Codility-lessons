@@ -1,55 +1,52 @@
 using System;
-using System.Linq;
 
 class Solution {
     public int solution(int[] A) {
-        //declare variables
-        int original = 0;
-        int last = 0;
-        int len = A.Length;
         
-        //find out the number of pairs
-        int repeat = len;
-        repeat++;
-        repeat = repeat/2;
+        // create 2d array to keep track of numbers
         
-        //repeat the sequence for the number of pairs there are
-        for (int i = repeat; i > 0; i--)
-        {
-            //declaring n and s
-            int n = 0;
-            int s = 0;
-            //find and match numbers
-            for (; n < len; n++)
-            {
-                if (A[n] != 0)
-                {
-                    original = A[n];
-                    A[n] = 0;
-                    break;
-                }
-            }
+        int[] values = new int[1000001];
+        
+        // get number of elements in array
+        
+        int lengthOfA = A.Length;
+        
+        
+        // go through array, entering number
+        // of elements
+        
+        for (int i = 0; i < lengthOfA; i++) {
             
-            if (A.Contains(original))
-            {
-                s = Array.FindIndex(A, n, item => item == original);
-                A[s] = 0;
-            }
-            else
-            {
-                A[n] = original;
+            // check if integer below 1000000
+            
+            if (A[i] <= 1000000) {
+            
+                // increment counter of appearances
+                // of the variable
+            
+                values[A[i]]++;
             }
         }
         
-        //find last remaining non-zero digit and return it
-        for (int i = 0; i < len; i++)
-        {
-            if (A[i] != 0)
-            {
-                last = A[i];
-                break;
+        
+        // go through number of occurances
+        
+        for (int i = 0; i < 1000001; i++) {
+            
+            // check if odd number of occurances
+            
+            if (values[i] % 2 == 1) {
+                
+                // return value with odd number
+                // of occurances
+                
+                return i;
             }
         }
-        return last;
+        
+        
+        // fallback default case
+        
+        return A[0];
     }
 }
