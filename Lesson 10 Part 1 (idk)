@@ -1,0 +1,61 @@
+using System;
+
+class Solution {
+    public int solution(int N) {
+        
+        // integer storing number
+        // of factors
+        
+        int factors = 0;
+        
+        // square root of N
+        
+        double squareOfN = Math.Sqrt(N);
+        
+        
+        // loop to go through half
+        // the numbers and see how
+        // many factors there are
+        
+        for( int i = 1; i <= (int)squareOfN; i++) {
+            
+            // compare if the float is
+            // the same as the integer to
+            // see if it is a whole number
+            
+            if((N % i) == 0) {
+                
+                // add 1 to factors since
+                // another factor is found
+                
+                factors++;
+                
+                // debug
+                // Console.WriteLine(i);
+            }
+        }
+        
+        
+        // double factors number since we used square
+        // root when calculating the number
+        
+        factors *= 2;
+        
+        
+        // account for odd numbers by reducing number
+        // of factors by 1
+        
+        if(squareOfN == (int)squareOfN) {
+            
+            // decrease factors count
+            
+            factors--;
+            
+        }
+        
+        // return number of factors
+        
+        return factors;
+        
+    }
+}
