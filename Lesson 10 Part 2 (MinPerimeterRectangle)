@@ -1,0 +1,46 @@
+using System;
+
+class Solution {
+    public int solution(int N) {
+        
+        // integer storing perimeter
+        
+        int perimeter = 2100000000;
+        
+        // square root of N
+        
+        double squareOfN = Math.Sqrt(N);
+        
+        
+        // loop to go through the
+        // numbers and see if a smaller
+        // perimeter can be found
+        
+        for( int i = (int)squareOfN; i > 0; i--) {
+            
+            // check if the float is
+            // the same as the integer to
+            // see if it is a whole number
+            
+            if((N % i) == 0) {
+                
+                // check if the new perimeter
+                // is smaller, and if it is
+                // update perimeter
+                
+                if(2 * (i + N/i) < perimeter) {
+                    
+                    // update perimeter
+                    
+                    perimeter = 2 * (i + N/i);
+                }
+            }
+        }
+        
+        
+        // return length of perimeter
+        
+        return perimeter;
+        
+    }
+}
