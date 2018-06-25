@@ -40,7 +40,7 @@ class Solution {
         
         int spacesSinceLastPeak = 0;
         
-        int sqrtFlags = (int)(Math.Sqrt(length)+1);
+        int sqrtFlags = (int)(Math.Sqrt(length)+2);
         
         // get flags numbers
         for( int flags = 1; flags < sqrtFlags; flags++) {
