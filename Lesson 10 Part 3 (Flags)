@@ -56,7 +56,7 @@ class Solution {
                 
                 // Debug.WriteLine(spacesSinceLastPeak);
                 
-                if( spacesSinceLastPeak > flags) {
+                if( spacesSinceLastPeak >= flags) {
                     flagsPutDown++;
                     spacesSinceLastPeak = 0;
                 }
