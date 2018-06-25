@@ -1,0 +1,78 @@
+using System;
+using System.Diagnostics;
+
+class Solution {
+    public int solution(int[] A) {
+        
+        int length = A.Length;
+        
+        // use length/2-1 as that is the
+        // maximum possible number of peaks
+        int[] peaks = new int[length/2+1];
+        
+        int trail = 0;
+        int current = 1;
+        int next = 2;
+        
+        int counter = 1;
+        int peaknumber = 0;
+        
+        // populate flags array
+        for( int i = 1; i < length - 1; i++) {
+            if( A[trail] < A[current] && A[next] < A[current]) {
+                peaks[peaknumber] = counter;
+                peaknumber++;
+                
+               // Debug.WriteLine(counter);
+                
+                counter = 1;
+            } else {
+                counter++;
+            }
+            
+            trail++;
+            current++;
+            next++;
+        }
+        
+        int maxFlags = 0;
+        int flagsPutDown = 0;
+        
+        int spacesSinceLastPeak = 0;
+        
+        int sqrtFlags = (int)(Math.Sqrt(length)+1);
+        
+        // get flags numbers
+        for( int flags = 1; flags < sqrtFlags; flags++) {
+            flagsPutDown = 0;
+            
+            // make sure first flag gets counted
+            spacesSinceLastPeak = flags;
+            
+            // get maximum flags for each number of flags
+            // that can be put down
+            for( int i = 0; i < peaknumber; i++) {
+                spacesSinceLastPeak += peaks[i];
+                
+                // Debug.WriteLine(spacesSinceLastPeak);
+                
+                if( spacesSinceLastPeak > flags) {
+                    flagsPutDown++;
+                    spacesSinceLastPeak = 0;
+                }
+                
+                // check for exit condition: no more
+                // flags that can be put down
+                if( flagsPutDown == flags) {
+                    break;
+                }
+            }
+            
+            if( flagsPutDown > maxFlags) {
+                maxFlags = flagsPutDown;
+            }
+        }
+        
+        return maxFlags;
+    }
+}
