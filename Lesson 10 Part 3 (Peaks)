@@ -6,7 +6,7 @@ class Solution {
         
         int length = A.Length;
         
-        int sections = 0;
+        int maxSections = 0;
         
         // use length/2-1 as that is the
         // maximum possible number of peaks
@@ -38,13 +38,13 @@ class Solution {
         
         int sectionCount = 0;
         
-        new int[] sections = new int[(int) squareOfLength)];
+        int[] sections = new int[(int)(squareOfLength)];
         
         // save cycles by only going through one "side" of
         // factors
         
         for( int i = 1; i <= (int)squareOfLength; i++) {
-            if((Length / i) == (int)(length / i)) {
+            if((length / i) == (int)(length / i)) {
                 sections[sectionCount] = i;
                 sectionCount++;
             }
@@ -54,19 +54,23 @@ class Solution {
         // until the peaks can't fill sections
         // (not possible for last factor)
         
-        foreach(int section in sections) {
+        for(int n = 0; n < sectionCount; n++) {
+            int sectionsNumber = sections[n];
             // check peaks for section
-            for( int i = 0; i < section; i++) {
+            for( int i = 0; i < sectionsNumber; i++) {
                 int j = 0;
                 for( ; j < peaknumber; j++) {
-                    if((i)*length/section)) < peak[j] < ((i+1)*(length/section)) {
+                    if((i*(length/sectionsNumber)) < 
+                            peaks[j] < 
+                            ((i+1)*(length/sectionsNumber))) {
                         break;
                     }
                     // if suitable peak can not be found, return previous
                     // maximum number of sections
-                    return sections;
+                    return maxSections;
                 }
             }
+            maxSections = sectionsNumber;
         }
     }
 }
