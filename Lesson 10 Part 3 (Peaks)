@@ -60,9 +60,9 @@ class Solution {
             // check peaks for section
             for( int i = 0; i < sectionsNumber; i++) {
                 for( ; j < peaknumber; j++) {
-                    if((i*(length/sectionsNumber)) < 
-                            peaks[j] < 
-                            ((i+1)*(length/sectionsNumber))) {
+                    if(((i*(length/sectionsNumber)) < 
+                            peaks[j]) && (peaks[j] < 
+                            ((i+1)*(length/sectionsNumber)))) {
                         break;
                     }
                     // if suitable peak can not be found, return previous
@@ -72,5 +72,7 @@ class Solution {
             }
             maxSections = sectionsNumber;
         }
+        
+        return 0;
     }
 }
