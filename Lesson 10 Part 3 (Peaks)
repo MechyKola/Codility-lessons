@@ -5,74 +5,64 @@ class Solution {
     public int solution(int[] A) {
         
         int length = A.Length;
-        
         int maxSections = 0;
         
-        // use length/2-1 as that is the
-        // maximum possible number of peaks
-        int[] peaks = new int[length/2+1];
+        int sectionSize = length;
+        int currentSection = 0;
         
-        int trail = 0;
+        
+        // make an array of peaks
+        
+        int[] peaks = new int[(int)((length-1)/2)];
+        
+        int previous = 0;
         int current = 1;
         int next = 2;
-
-        int peaknumber = 0;
         
-        // populate peaks array, setting indexes as the 
-        // peak markers
-        for( int i = 1; i < length - 1; i++) {
-            if( A[trail] < A[current] && A[next] < A[current]) {
-                peaks[peaknumber] = current;
-                peaknumber++;
+        int peakCount = 0;
+        
+        for( int i = 2; i < length; i++) {
+            if( A[previous] < A[current] && A[next] < A[current]) {
+                peaks[peakCount] = current;
+                peakCount++;
+                
+                // Debug.WriteLine(current);
             }
-            
-            trail++;
+            previous++;
             current++;
             next++;
         }
         
-        // this part will retrieve all the factors of the
-        // array's length (that result in integers)
         
-        double squareOfLength = Math.Sqrt(length);
+        // return maximum number of scetions by going through factors
+        // and checking if this number of sections is possible
         
-        int sectionCount = 0;
-        
-        int[] sections = new int[(int)(squareOfLength)];
-        
-        // save cycles by only going through one "side" of
-        // factors
-        
-        for( int i = 1; i <= (int)squareOfLength; i++) {
-            if((length / i) == (int)(length / i)) {
-                sections[sectionCount] = i;
-                sectionCount++;
-            }
-        }
-        
-        // go through all peaks for each section,
-        // until the peaks can't fill sections
-        // (not possible for last factor)
-        
-        for(int n = 0; n < sectionCount; n++) {
-            int sectionsNumber = sections[n];
-               int j = 0;
-            // check peaks for section
-            for( int i = 0; i < sectionsNumber; i++) {
-                for( ; j < peaknumber; j++) {
-                    if(((i*(length/sectionsNumber)) < 
-                            peaks[j]) && (peaks[j] < 
-                            ((i+1)*(length/sectionsNumber)))) {
-                        break;
-                    }
-                    // if suitable peak can not be found, return previous
-                    // maximum number of sections
+        for( int sectionNumber = 1; sectionNumber <= length; sectionNumber++) {
+            
+            // make sure it's a factor
+            if( length/sectionNumber == (int)(length/sectionNumber)) {
+                
+                currentSection = 0;
+                sectionSize = length/sectionNumber;
+                for ( int currentPeak = 0; currentPeak < peakCount; currentPeak++) {
+                    if ( peaks[currentPeak] >= currentSection*sectionSize &&
+                         peaks[currentPeak] <= (currentSection+1)*sectionSize) {
+                            currentSection++;
+                        }
+                        
+                        Debug.WriteLine(currentSection);
+                }
+                if( currentSection == sectionNumber + 1) {
+                    maxSections = sectionNumber;
+                } else {
                     return maxSections;
                 }
             }
-            maxSections = sectionsNumber;
         }
         
-        return 0;
+        
+        // default case
+        
+        return maxSections;
     }
 }
