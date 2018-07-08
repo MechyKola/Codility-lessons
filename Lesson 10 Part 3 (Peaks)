@@ -1,3 +1,5 @@
+
+
 using System;
 using System.Diagnostics;
 
@@ -40,19 +42,28 @@ class Solution {
         for( int sectionNumber = 1; sectionNumber <= length; sectionNumber++) {
             
             // make sure it's a factor
-            if( length/sectionNumber == (int)(length/sectionNumber)) {
+            if( (float)length/sectionNumber == (int)length/sectionNumber) {
+                
+                // Debug.WriteLine((float)length/sectionNumber);
                 
                 currentSection = 0;
                 sectionSize = length/sectionNumber;
                 for ( int currentPeak = 0; currentPeak < peakCount; currentPeak++) {
                     if ( peaks[currentPeak] >= currentSection*sectionSize &&
-                         peaks[currentPeak] <= (currentSection+1)*sectionSize) {
+                         peaks[currentPeak] < (currentSection+1)*sectionSize) {
                             currentSection++;
                         }
                         
-                        Debug.WriteLine(currentSection);
+                        // Debug.WriteLine(currentSection*sectionSize);
+                        // Debug.WriteLine(currentSection);
+                        // Debug.WriteLine((currentSection+1)*sectionSize);
+                        
+                        // Debug.WriteLine(peaks[currentPeak]);
                 }
-                if( currentSection == sectionNumber + 1) {
+                
+                // Debug.WriteLine("Out of loop: " + currentSection);
+                
+                if( currentSection == sectionNumber) {
                     maxSections = sectionNumber;
                 } else {
                     return maxSections;
@@ -66,3 +77,4 @@ class Solution {
         return maxSections;
     }
 }
+
