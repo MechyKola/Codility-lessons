@@ -1,80 +1,64 @@
-
-
 using System;
-using System.Diagnostics;
 
 class Solution {
     public int solution(int[] A) {
-        
         int length = A.Length;
-        int maxSections = 0;
         
-        int sectionSize = length;
-        int currentSection = 0;
+        int max = (int)((length-1)/2);
+        int maxSlices = 0;
         
+        int[] peaks = new int[max];
         
-        // make an array of peaks
-        
-        int[] peaks = new int[(int)((length-1)/2)];
-        
-        int previous = 0;
-        int current = 1;
-        int next = 2;
-        
-        int peakCount = 0;
-        
-        for( int i = 2; i < length; i++) {
-            if( A[previous] < A[current] && A[next] < A[current]) {
-                peaks[peakCount] = current;
-                peakCount++;
-                
-                // Debug.WriteLine(current);
+        int count = 0;
+        for(int i = 2; i < length; i++)
+        {
+            if( A[i-2] < A[i-1] && A[i] < A[i-1])
+            {
+                peaks[count] = i-1;
+                count++;
             }
-            previous++;
-            current++;
-            next++;
         }
         
+        if(count == 0)
+        {
+            return 0;
+        }
         
-        // return maximum number of scetions by going through factors
-        // and checking if this number of sections is possible
+        for(int slices = 1; slices <= count; slices++)
+        {
+            if(length % slices == 0)
+            {
+                int size = length/slices;
         
-        for( int sectionNumber = 1; sectionNumber <= length; sectionNumber++) {
-            
-            // make sure it's a factor
-            if( (float)length/sectionNumber == (int)length/sectionNumber) {
+                int peakTracker = 0;
+                int slice = 0;
                 
-                // Debug.WriteLine((float)length/sectionNumber);
-                
-                currentSection = 0;
-                sectionSize = length/sectionNumber;
-                for ( int currentPeak = 0; currentPeak < peakCount; currentPeak++) {
-                    if ( peaks[currentPeak] >= currentSection*sectionSize &&
-                         peaks[currentPeak] < (currentSection+1)*sectionSize) {
-                            currentSection++;
+                for(;;)
+                {
+                    if(peaks[peakTracker] < slice * size)
+                    {
+                        peakTracker++;
+                        if(peakTracker >= count)
+                        {
+                            break;
                         }
-                        
-                        // Debug.WriteLine(currentSection*sectionSize);
-                        // Debug.WriteLine(currentSection);
-                        // Debug.WriteLine((currentSection+1)*sectionSize);
-                        
-                        // Debug.WriteLine(peaks[currentPeak]);
-                }
-                
-                // Debug.WriteLine("Out of loop: " + currentSection);
-                
-                if( currentSection == sectionNumber) {
-                    maxSections = sectionNumber;
-                } else {
-                    return maxSections;
+                    }
+                    else if(peaks[peakTracker] < (slice + 1) * size)
+                    {
+                        slice++;
+                        if(slice == slices)
+                        {
+                            maxSlices = slices;
+                        }
+                    }
+                    else
+                    {
+                        break;
+                    }
                 }
             }
         }
         
-        
-        // default case
-        
-        return maxSections;
+        return maxSlices;
     }
 }
-
