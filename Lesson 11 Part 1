@@ -1,0 +1,50 @@
+using System;
+// you can also use other imports, for example:
+// using System.Collections.Generic;
+
+// you can write to stdout for debugging purposes, e.g.
+// Console.WriteLine("this is a debug message");
+
+class Solution {
+    public int[] solution(int N, int[] P, int[] Q) {
+        // write your code in C# 6.0 with .NET 4.5 (Mono)
+        
+        // lowest prime factor that aren't itself or 1
+        int[] firstFactor = new int[N + 1];
+        
+        
+        // mark semiprimes
+        for(int i = 2; i < N + 1; i++) {
+            if(firstFactor[i] == 0) {
+                for(int j = i * 2; j < N + 1; j += i) {
+                    if(firstFactor[j] == 0) {
+                        if(j == i * i) {
+                            firstFactor[j] = -1;
+                        } else {
+                            firstFactor[j] = i;
+                        }
+                    } else if(firstFactor[j] * i == j) {
+                        firstFactor[j] = -1;
+                    }
+                }
+            }
+        }
+        
+        // foreach(int i in firstFactor) {
+        //     Console.WriteLine(i);
+        // }
+        
+        // check for each range
+        int[] semiprimesInRange = new int[P.Length];
+        
+        for(int i = 0; i < P.Length; i++) {
+            for(int j = P[i]; j < Q[i] + 1; j++) {
+                if(firstFactor[j] == -1) {
+                    semiprimesInRange[i]++;
+                }
+            }
+        }
+        
+        return semiprimesInRange;
+    }
+}
